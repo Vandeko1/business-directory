@@ -1,0 +1,25 @@
+# Непотрібні файли і каталоги для Docker
+docker-compose.override.yml
+.docker/
+**/node_modules/
+**/vendor/
+
+# Каталоги для Vue.js та npm
+/dist
+/.nuxt
+/.cache
+
+# Файли конфігурації IDE
+.idea/
+.vscode/
+
+# Файли логів
+*.log
+
+# Файли, які можуть містити секрети або конфіденційну інформацію
+.env
+.env.local
+
+# Системні файли
+.DS_Store
+Thumbs.db

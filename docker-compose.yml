@@ -1,0 +1,41 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: business-directory-backend
+    volumes:
+      - ./backend:/var/www/html
+      - ./backend/apache-config:/etc/apache2/sites-available  # Монтуючи локальну папку з конфігурацією
+    ports:
+      - "8000:80"
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/web
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: business-directory-frontend
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "8080:8080"
+
+  db:
+    image: mysql:5.7
+    container_name: business-directory-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: base
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 1882
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+volumes:
+  db-data:
