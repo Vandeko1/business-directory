@@ -1,1 +1,1 @@
-docker exec -it dae9a774115d bash
+docker exec -it business-directory-backend bash
